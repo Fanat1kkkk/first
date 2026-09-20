@@ -1,0 +1,745 @@
+/* Обнулення та базові налаштування */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Playfair Display', 'Segoe UI', serif; /* Елегантний італійський шрифт */
+}
+
+
+
+body {
+    /* Теплий середземноморський фон для демонстрації */
+    background-color: rgba(12, 35, 64, 0.85);
+    min-height: 100vh;
+}
+
+/* Шапка сайту */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    z-index: 1000;
+    background: rgba(12, 35, 64, 0.15); /* Темно-синій прозорий відтінок */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Логотип */
+.logo a {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #FFC107; /* Лимонно-золотий акцент */
+}
+
+/* Навігація для десктопів */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+.nav-item a {
+    color: #f8f9fa;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-item a:hover {
+    color: #FFC107;
+    border-bottom: 2px solid #FFC107;
+}
+
+/* Кнопки та іконки */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.social-links a {
+    color: #f8f9fa;
+    font-size: 19px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #FFC107;
+    transform: translateY(-2px);
+}
+
+.cta-btn {
+    background: #FFC107;
+    color: #0c2340;
+    padding: 10px 24px;
+    border-radius: 4px; /* Більш класична прямокутна форма */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+    background: #fff;
+    color: #0c2340;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+}
+
+/* Кнопка Бургер */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.burger-menu .bar {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+/* Адаптивність (Мобільна версія) */
+@media (max-width: 992px) {
+    .site-header {
+        padding: 15px 5%;
+    }
+
+    .burger-menu {
+        display: flex;
+    }
+
+    .nav-container {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        height: 100vh;
+        background: rgba(12, 35, 64, 0.98); /* Глибокий італійський синій */
+        padding: 120px 40px;
+        transition: right 0.4s ease;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .nav-item a {
+        font-size: 22px;
+    }
+
+    .nav-container.active {
+        right: 0;
+    }
+
+    /* Анімація бургера */
+    .burger-menu.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .burger-menu.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-menu.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .social-links {
+        display: none;
+    }
+}
+
+/* Стилі для Головної секції (Hero Section) */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Секція займає весь екран */
+    display: flex;
+    justify-content: flex-start; /* Вирівнювання вмісту ліворуч */
+    align-items: center;
+    padding: 0 8%;
+    /* Додаємо легке затемнення фону, щоб білий текст легко читався */
+    background: linear-gradient(rgba(12, 35, 64, 0.4), rgba(12, 35, 64, 0.5)), 
+                url('https://unsplash.com') no-repeat center center/cover;
+}
+
+.hero-content {
+    max-width: 650px; /* Обмежуємо ширину тексту для зручності читання */
+    z-index: 10;
+    color: #fff;
+    /* Ефект появи тексту (можна розширити за бажанням) */
+    animation: fadeIn 1s ease-in-out;
+}
+
+.hero-title {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    font-size: 30px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Для зручності читання опису */
+}
+
+/* Кнопки */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #FFC107;
+    color: #0c2340;
+}
+
+.btn-primary:hover {
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(255, 193, 7, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.btn-secondary:hover {
+    background: #fff;
+    color: #0c2340;
+    transform: translateY(-2px);
+}
+
+/* Анімація для тексту */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивність під мобільні пристрої */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 0 5%;
+        justify-content: center; /* Центруємо текст на смартфонах */
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+        flex-direction: column; /* Кнопки стають одна під одною на телефонах */
+        gap: 15px;
+        align-items: center;
+    }
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFC107; /* Лимонно-золотий акцент */
+    padding: 0;
+}
+
+.section-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #f0f0f0;
+    max-width: 800px;
+    padding: 0;
+}
+
+.line {
+    border: 0;
+    height: 1px;
+    background: #FFC107; /* Лимонно-золотий колір для роздільної лінії */
+    margin: 40px 0;
+}
+
+.attractions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    border-radius: 8px;
+}
+
+.attraction-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+}
+
+.attraction-card img {
+    border-radius: 8px;
+    width: 100%;
+}
+
+#attractions {
+   background-color: rgba(12, 35, 64, 0.85); /* Темно-синій фон для секції */
+}
+
+.attraction-name {
+    font-family: amatic SC, cursive; /* Елегантний італійський шрифт */
+    color: #FFC107; /* Лимонно-золотий акцент */
+    font-size: 30px;
+}
+
+.attraction-description {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Для зручності читання опису */
+    color: #0c2340;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #42a7ff;
+}
+
+.line {
+    height: 3px;
+}
+
+.section-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #FFC107; /* Лимонно-золотий акцент */
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.section-description {
+    font-size: 25px;
+    line-height: 1.8;
+    color: #f0f0f0;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto 40px auto;
+    font-family: amatic SC, cursive; /* Для зручності читання опису */
+}
+
+.section-image {
+    width: 1500px;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.section-image:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.image {
+    width: 1000px;
+    display: flex;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding-left: 150px;
+    float: left;
+}
+
+.image-caption {
+    font-size: 32px;
+    font-weight: 600;
+    color: #FFC107; /* Лимонно-золотий акцент */
+    text-align: center;
+    margin-top: 15px;
+    font-family: snell Roundhand, cursive; /* Елегантний італійський шрифт для підпису */
+}
+
+.image-description {
+    font-size: 26px;
+    line-height: 1.6;
+    color: #f0f0f0;
+    max-width: 800px;
+    display: flex;
+    margin: 20px auto 40px auto;
+    font-family: windsor, cursive; /* Для зручності читання опису */
+    padding-right: 100px;
+}
+
+.image:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFC107; /* Лимонно-золотий акцент */
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.description {
+    font-size: 25px;
+    line-height: 1.8;
+    color: #f0f0f0;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto 40px auto;
+    font-family: snell Roundhand, cursive; /* Для зручності читання опису */
+}
+
+.pal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-top: 50px;
+}
+
+.img {
+    width: 900px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 5px;
+}
+
+
+
+.etna {
+    display: flex;
+    justify-content: space-around;
+}
+
+.etna-description {
+    display: flex;
+    padding-top: 50px;
+    padding-left: 100px;
+}
+
+.etna-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFC107; /* Лимонно-золотий акцент */
+    margin-bottom: 20px;
+    justify-content: space-around;
+    text-transform: uppercase;
+    margin: 50px;
+}
+
+.etna-list {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #f0f0f0;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Для зручності читання опису */
+    margin: 50px;
+}
+
+.attractions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    border-radius: 8px;
+}
+
+.attraction-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+}
+
+.attraction-card img {
+    border-radius: 8px;
+    width: 100%;
+}
+
+#attractions {
+   background-color: rgba(12, 35, 64, 0.85); /* Темно-синій фон для секції */
+}
+
+.attraction-name {
+    font-family: amatic SC, cursive; /* Елегантний італійський шрифт */
+    color: #FFC107; /* Лимонно-золотий акцент */
+    font-size: 30px;
+}
+
+.attraction-description {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Для зручності читання опису */
+    color: #0c2340;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #42a7ff;
+}
+
+/* Обнулення базових відступів */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Стилізація футера */
+.sicily-footer {
+    background-color: #1a2a3a; /* Глибокий синій колір */
+    color: #e0e6ed;
+    padding: 60px 0 20px 0;
+    font-size: 15px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px;
+    gap: 40px;
+}
+
+/* Спільні стилі для колонок */
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Колонка "Про нас" */
+.footer-logo {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+
+.footer-logo span {
+    color: #ff9f43; /* Теплий помаранчевий акцент */
+}
+
+.footer-section p {
+    line-height: 1.6;
+    color: #a4b0be;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    background-color: #2f3542;
+    color: #fff;
+    text-align: center;
+    line-height: 38px;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #ff9f43;
+    transform: translateY(-3px);
+}
+
+/* Колонка посилань */
+.footer-section h3 {
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Лінія під заголовком */
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background-color: #ff9f43;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+    color: #a4b0be;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #ff9f43;
+    padding-left: 5px; /* Ефект зміщення при наведенні */
+}
+
+/* Форма підписки */
+.subscribe-form {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.subscribe-form input {
+    flex: 1;
+    padding: 12px;
+    background-color: #2f3542;
+    border: 1px solid #2f3542;
+    border-radius: 4px 0 0 4px;
+    color: #fff;
+    outline: none;
+}
+
+.subscribe-form input::placeholder {
+    color: #747d8c;
+}
+
+.subscribe-form button {
+    padding: 0 20px;
+    background-color: #ff9f43;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.subscribe-form button:hover {
+    background-color: #e68a2e;
+}
+
+.form-message {
+    font-size: 13px;
+    height: 18px;
+}
+
+/* Нижня панель */
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #2f3542;
+    color: #747d8c;
+    font-size: 14px;
+}
+
+/* Адаптивність для мобільних екранів */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+    }
+    .footer-section {
+        width: 100%;
+    }
+}
+
+/* Полное обнуление и центрирование на черном фоне */
+
+
+/* Контейнер для кнопок */
+.social-container {
+    display: flex;
+    gap: 30px; /* Отступы между иконками */
+    padding-top: 20px;
+}
+
+/* Стили ссылок-иконок */
+.social-link {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    text-decoration: none;
+}
+
+/* Сами SVG-логотипы (белый цвет) */
+.icon {
+    width: 100%;
+    height: 100%;
+    fill: #ffffff; /* Белый цвет логотипов */
+}
+
+/* Эффект при наведении (эффект легкого увеличения и пульсации) */
+.social-link:hover {
+    transform: scale(1.2);
+}
+
+/* Снижение яркости остальных иконок, когда наведена одна из них (через JS) */
+.social-link.fade {
+    opacity: 0.4;
+}
+
