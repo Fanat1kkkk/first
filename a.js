@@ -1,3 +1,12 @@
+// Знаходимо кнопку за її унікальним ID
+const orderButton = document.getElementById('main-order-btn');
+
+// Додаємо обробник події кліку
+orderButton.addEventListener('click', function() {
+    // Відправляємо подію в Google Analytics
+    gtag('event', 'click_order_main_page');
+
+
 document.addEventListener("DOMContentLoaded", function () {
     // 1. Автоматичне встановлення поточного року
     const yearSpan = document.getElementById("current-year");
